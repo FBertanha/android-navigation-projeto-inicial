@@ -45,11 +45,15 @@ class DetalhesProdutoFragment : Fragment() {
     private fun configuraBotaoComprar() {
         detalhes_produto_botao_comprar.setOnClickListener {
             viewModel.produtoEncontrado.value?.let {
-                val dados = Bundle()
-                dados.putLong(CHAVE_PRODUTO_ID, produtoId)
-                navController.navigate(R.id.pagamento, dados)
+                vaiParaPagamento()
             }
         }
+    }
+
+    private fun vaiParaPagamento() {
+        val dados = Bundle()
+        dados.putLong(CHAVE_PRODUTO_ID, produtoId)
+        navController.navigate(R.id.action_detalhesProduto_to_pagamento, dados)
     }
 
     private fun buscaProduto() {

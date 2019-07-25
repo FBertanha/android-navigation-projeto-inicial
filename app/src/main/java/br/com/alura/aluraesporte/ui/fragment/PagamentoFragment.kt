@@ -15,7 +15,6 @@ import br.com.alura.aluraesporte.model.Produto
 import br.com.alura.aluraesporte.ui.activity.CHAVE_PRODUTO_ID
 import br.com.alura.aluraesporte.ui.viewmodel.PagamentoViewModel
 import kotlinx.android.synthetic.main.pagamento.*
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val FALHA_AO_CRIAR_PAGAMENTO = "Falha ao criar pagamento"
@@ -77,10 +76,15 @@ class PagamentoFragment : Fragment() {
                 .observe(this, Observer {
                     it?.dado?.let {
                         Toast.makeText(context, COMPRA_REALIZADA, Toast.LENGTH_LONG).show()
-                        navController.navigate(R.id.listaProdutos)
+
+//                        vaiParaListaProdutos()
                     }
                 })
         }
+    }
+
+    private fun vaiParaListaProdutos() {
+        navController.popBackStack(R.id.action_pagamento_to_listaProdutos, false)
     }
 
     private fun criaPagamento(): Pagamento? {
